@@ -19,7 +19,7 @@
 <script type="text/javascript" charset="euc-kr" src="http://c.img.emart.co.kr/static/js/text.js"></script>
 <script type="text/javascript">
 //<![CDATA[
-  // 로그인 후 콜백
+	// 로그인 후 콜백
 	function fn_loginCallBack(){
 
 		with( document.reloadForm ){
@@ -118,23 +118,23 @@
 	}
 //]]>
 </script>
-<style>
-	@font-face {font-family:web-font;src:url(http://www.emart.com/static/font/UttumDotum_limitless.eot)};
-	body{font-family:web-font; font-size: 12px;}
-	div, p, span, a{font-family:web-font; font-size: 12px;}
+
+<!-- [D] body 에 있는 inner css 모두 head로 이동 -->
+<style type="text/css">
+@font-face {font-family:web-font;src:url(http://www.emart.com/static/font/UttumDotum_limitless.eot)};
+body{font-family:web-font; font-size: 12px;}
+div, p, span, a{font-family:web-font; font-size: 12px;}
+.login_left{float:left}
+.loginbox dl dd.idsave label{width:auto}
+.loginbox .btnset{clear:both;width:286px;padding:10px 0 30px 92px;border-top: 4px solid #33353d} 
+.event_area{float:right;margin-top:-33px !important}
 </style>
+<link rel="stylesheet" type="text/css" href="http://c.img.emart.co.kr/static/css_new/login.css" />	<!-- [D] body에서 head로 이동 -->
 </head>
 <body>
 
-
-
-
-
-
-
 <!-- [s]each page css/js -->
 <script type="text/javascript" charset="euc-kr" src="http://c.img.emart.co.kr/static/js_new/netfunnel_debug.js"></script>
-<link rel="stylesheet" type="text/css" href="http://c.img.emart.co.kr/static/css_new/login.css" />
 <script type="text/javascript">
 //<![CDATA[
 	$(document).ready(function(){
@@ -158,19 +158,18 @@
 				$(".event_area .event").html("<a href=\"javascript:goBannerUrl('http://www.emart.com/display/theme.do?method=getWorldCuisineMain&emid=HD_CTG_10_09');\"><img src=\"http://img.emart.co.kr/back/www/uploadImg/ctg/corner/banner/30/00/000/worldbanner_120524.jpg\" alt=\"\" /></a>");
 			}
 		});
-
 		
-
-		window.focus();
-		if('' == "noMem"){
-			document.nonmem_form.email_addr.focus();
-		}else{
-			if("" == document.myform.memberid.value){
-				document.myform.memberid.focus();
-			}else{
-				document.myform.pwd.focus();
-			}
-		}
+		// [D] wah_start: 아래 주석처리 된부분 삭제 해주세요
+		//window.focus();
+		//if('' == "noMem"){
+		//	document.nonmem_form.email_addr.focus();
+		//}else{
+		//	if("" == document.myform.memberid.value){
+		//		document.myform.memberid.focus();
+		//	}else{
+		//		document.myform.pwd.focus();
+		//	}
+		//}
 	});
 
 	function goBannerUrl(url){
@@ -419,14 +418,14 @@
 		}else{
 			window.resizeTo(765,445);
 		}
-
-		window.focus();
-
-		if("" == document.myform.memberid.value){
-			document.myform.memberid.focus();
-		}else{
-			document.myform.pwd.focus();
-		}
+		
+		// [D] wah_start: 아래 주석처리 된부분 삭제 해주세요
+		//window.focus();
+		//if("" == document.myform.memberid.value){
+		//	document.myform.memberid.focus();
+		//}else{
+		//	document.myform.pwd.focus();
+		//}
 	}
 
 	var nomemTabIndex = 0;
@@ -442,9 +441,10 @@
 			window.resizeTo('580','580');
 		}
 
-		window.focus();
-		if(nomemTabIndex == 1) document.nonmem_form.member_name.focus();
-		else document.nonmem_search_form.member_name.focus();
+		// [D] wah_start: 아래 주석처리 된부분 삭제 해주세요
+		//window.focus();
+		//if(nomemTabIndex == 1) document.nonmem_form.member_name.focus();
+		//else document.nonmem_search_form.member_name.focus();
 	}
 
 	//포커스이동
@@ -483,7 +483,8 @@
 </script>
 <!-- [e]each page css/js -->
 
-<form name="loginForm" method="post"><input type="hidden" name="envelopData">
+<form name="loginForm" method="post" action="">
+<input type="hidden" name="envelopData" />
 <input type="hidden" name="cert" value="" />
 <input type="hidden" name="method" id="method" value="" />
 <input type="hidden" name="login_type" />
@@ -519,53 +520,64 @@
 	<span class="close"><a href="javascript:self.close();"><img src="http://img.emart.co.kr/front_201109/images_new/login/icon_close.gif" alt="닫기" /></a></span>
 	<div class="loginbox">
 		<h1><img src="http://img.emart.co.kr/front_201109/images_new/login/ptit_login.gif" alt="로그인" />
-			<p class="radio">
-				<span><input type="radio" class="radio" checked /><img src="http://img.emart.co.kr/front_201109/images_new/login/txt_member.gif" alt="회원" /></span>
-				<span><input type="radio" class="radio" onclick="fnNomemberGo();"/><img src="http://img.emart.co.kr/front_201109/images_new/login/txt_member_no.gif" alt="비회원" /></span>
-			</p>
+			<!-- [D] p -> i -->
+			<i class="radio">
+				<span><label for="lb_member"><input type="radio" id="lb_member" checked="checked" class="radio" /><img src="http://img.emart.co.kr/front_201109/images_new/login/txt_member.gif" alt="회원" /></label></span>	<!-- [D] label 및 input에 id값 추가 -->
+				<span><label for="lb_nonmember"><input type="radio" id="lb_nonmember" onclick="fnNomemberGo();" class="radio" /><img src="http://img.emart.co.kr/front_201109/images_new/login/txt_member_no.gif" alt="비회원" /></label></span>	<!-- [D] label 및 input에 id값 추가 -->
+			</i>
 		</h1>
-		<dl>
+
+		
+		<!-- [D] ID.87 start: login_left 전체 감쌈 -->
+		<div class="login_left">
 			<form method="post" name="myform" action="" onsubmit="return false;">
-			<dd class="id_inp"><label><img src="http://img.emart.co.kr/front_201109/images_new/login/hd_id.gif" alt="아이디" /></label> <input type="text" name="memberid" id="u-id" class="txt" tabindex="1" value="" maxlength="20" /></dd>
-			<dd class="pw_inp"><label><img src="http://img.emart.co.kr/front_201109/images_new/login/hd_pw.gif" alt="비밀번호" /></label> <input type="password" name="pwd" id="u_password" class="txt" tabindex="2" onkeydown="fnEnterSubmit(event, 'Common')" /></dd>
-			<dd class="btnlogin"><a href="javascript:fnLogin('Common');"><img src="http://img.emart.co.kr/front_201109/images_new/login/btn_login_02.gif" alt="로그인" id="butlogin" /></a></dd>
-			<dd class="idsave">
-			<input type="checkbox" class="checkbox" name="save_id_flag"  id="save_id" />
-			<img src="http://img.emart.co.kr/front_201109/images_new/login/txt_idsave.gif" alt="아이디 저장" />
-			</dd>
+				<dl>				
+				<dd class="id_inp"><label for="u-id"><img src="http://img.emart.co.kr/front_201109/images_new/login/hd_id.gif" alt="아이디" /></label> <input type="text" name="memberid" id="u-id" class="txt" value="" maxlength="20" /></dd>
+				<dd class="pw_inp"><label for="u_password"><img src="http://img.emart.co.kr/front_201109/images_new/login/hd_pw.gif" alt="비밀번호" /></label> <input type="password" name="pwd" id="u_password" class="txt" onkeydown="fnEnterSubmit(event, 'Common')" /></dd>			
+				<dd class="idsave">
+					<label for="save_id">
+						<input type="checkbox" class="checkbox" name="save_id_flag"  id="save_id" />
+						<img src="http://img.emart.co.kr/front_201109/images_new/login/txt_idsave.gif" alt="아이디 저장" />
+					</label>
+				</dd>
+				<dd class="btnlogin"><a href="javascript:fnLogin('Common');"><img src="http://img.emart.co.kr/front_201109/images_new/login/btn_login_02.gif" alt="로그인" id="butlogin" /></a></dd>
+				</dl>
 			</form>
-			<dd class="btnset">
+			<p class="btnset">
 				<a href="javascript:fnFindMemberId('');"><img src="http://img.emart.co.kr/front_201109/images_new/login/btn_idsch.gif" alt="아이디 찾기" /></a>
 				<a href="javascript:fnFindMemberPassword('','')"><img src="http://img.emart.co.kr/front_201109/images_new/login/btn_pwsch.gif" alt="비밀번호 찾기" /></a>
 				<a href="javascript:fnMemberShip();"><img src="http://img.emart.co.kr/front_201109/images_new/login/btn_memberjoin.gif" alt="회원가입 하기" /></a>
-			</dd>
+			</p>
+		</div>
+		<!-- //[D] ID.87 end -->
 
-		</dl>
 		<div class="event_area">
 			<p class="logo"><img src="http://img.emart.co.kr/front_201109/images_new/login/logo_login.gif" alt="이마트몰" /></p>
 			<p class="event"></p>
 		</div>
-	</div></div>
+	</div>
+	<!-- [D] </div></div> 에서 </div> 하나 삭제 -->
 </div>
 
 
-<div id="pop_login" class="nomember" style="display:none" >  <!-- 팝업 사이즈 580 * 850 -->
+<div id="pop_login2" class="nomember" style="display:none" >  <!-- 팝업 사이즈 580 * 850 -->
 	<span class="close"><a href="javascript:self.close();"><img src="http://img.emart.co.kr/front_201109/images_new/login/icon_close.gif" alt="닫기" /></a></span>
 	<h1 class="nomemTit"><img src="http://img.emart.co.kr/front_2012/front/login/nomember_tit.jpg" alt="비회원 로그인" />
-		<p class="radio">
+		<!-- [D] p -> i -->
+		<i class="radio">
 			<span><input type="radio" class="radio"  onclick="fnMemberGo();" /><img src="http://img.emart.co.kr/front_201109/images_new/login/txt_member.gif" alt="회원" /></span>
-			<span><input type="radio" class="radio" checked /><img src="http://img.emart.co.kr/front_201109/images_new/login/txt_member_no.gif" alt="비회원" /></span>
-		</p>
-	</h1>
+			<span><input type="radio" class="radio" checked="checked" /><img src="http://img.emart.co.kr/front_201109/images_new/login/txt_member_no.gif" alt="비회원" /></span>
+		</i>
+	</h1>	
 
 	<ul class="pop_tab">
-		<li><a href="#nomem_status"><img src="http://img.emart.co.kr/front_2012/front/login/nomember_tab_1_on.jpg"  alt="주문/배송조회" /></a></li>
-		<li><a href="#nomem_login"><img src="http://img.emart.co.kr/front_2012/front/login/nomember_tab_2_off.jpg"  alt="주문하기" /></a></li>
+		<li><a href="#nomem_status" class="0"><img src="http://img.emart.co.kr/front_2012/front/login/nomember_tab_1_on.jpg"  alt="주문/배송조회" /></a></li>
+		<li><a href="#nomem_login" class="1"><img src="http://img.emart.co.kr/front_2012/front/login/nomember_tab_2_off.jpg"  alt="주문하기" /></a></li>
 	</ul>
 
 	<!-- [s]비회원 주문배송조회 -->
 	<div class="order_status nomemContent" id="nomem_status" style="display:">
-		<form name="nonmem_search_form" method="post" onsubmit="return false;">
+		<form name="nonmem_search_form" method="post" onsubmit="return false;" action="">	<!-- [D] action="" 추가 -->
 		<div class="searchFormBox">
 			<ul class="">
 				<li>
@@ -601,7 +613,7 @@
 
 	<!-- [s]비회원 주문하기 -->
 	<div class="login_others nomemContent" id="nomem_login" style="display:none">
-		<form name="nonmem_form" method="post" onsubmit="return false;">
+		<form name="nonmem_form" method="post" onsubmit="return false;" action=""> <!-- [D] action="" 추가 -->
 		<h2><img src="http://img.emart.co.kr/front_201109/images_new/login/stit_login_01.gif" alt="비회원 개인정보 보호정책" /></h2>
 		<div class="rulebox">
 			1. 개인정보의 수집항목
@@ -625,10 +637,15 @@
 			법률&quot; 등 관련법령의 규정에 의거 각 해당 기간 동안 보관해야 합니다.<br />
 			- 계약 또는 청약철회 등에 관한 기록 : 5년<br />
 			- 대금결제 및 재화등의 공급에 관한 기록 : 5년<br />
-			- 소비자의 불만 또는 분쟁처리에 관한 기록 : 3년</h3>
+			- 소비자의 불만 또는 분쟁처리에 관한 기록 : 3년<br />
 			</div>
 		<p class="txt_chk">개인정보보호조치 관련 정보통신방법에 의거하여 동의서에 동의하셔야 서비스를 이용하실 수 있습니다.</p>
-		<p class="agree_chk"><span><input type="radio" class="radio" id="agree1" name="agreement" value="Y"/>동의함</span><span><input type="radio" class="radio" id="agree2" name="agreement" value="N" />동의하지 않음</span></p>
+		<!-- [D] wah_start: <label> 넣어주세요 -->
+		<p class="agree_chk">
+			<span><label for="agree1"><input type="radio" class="radio" id="agree1" name="agreement" value="Y"/>동의함</label></span>
+			<span><label for="agree2"><input type="radio" class="radio" id="agree2" name="agreement" value="N" />동의하지 않음</label></span>
+		</p>
+		<!-- //[D] wah_end -->
 		<h2><img src="http://img.emart.co.kr/front_201109/images_new/login/stit_login_02.gif" alt="이용약관" /></h2>
 		<div class="rulebox">
 			제1조 (목적)<br />
@@ -848,28 +865,33 @@
 			이 약관은 2012년 4월 1일부터 시행됩니다.
 		</div>
 		<p class="txt_chk">개인정보보호조치 관련 정보통신방법에 의거하여 동의서에 동의하셔야 서비스를 이용하실 수 있습니다.</p>
-		<p class="agree_chk"><span><input type="radio" class="radio" name="agreement1" value="Y" id="agree3" />동의함</span><span><input type="radio" class="radio" name="agreement1" value="N" id="agree4" />동의하지 않음</span></p>
+		<p class="agree_chk">
+			<span><label for="agree3"><input type="radio" class="radio" name="agreement1" value="Y" id="agree3" />동의함</label></span>
+			<span><label for="agree4"><input type="radio" class="radio" name="agreement1" value="N" id="agree4" />동의하지 않음</label></span>
+		</p>
 
 
 		<div class="boardwrap nomemInfo">
 			<div class="pop_mem_tit">
 				<img src="http://img.emart.co.kr/front_2012/front/login/nomem_tit_1.jpg" alt="주문자정보" />
-			</div>
+			</div>			
 			<table cellpadding="0" cellspacing="0">
+			<caption class="e_bl">주문자정보 입력</caption>	<!-- [D] caption추가 -->
 			<colgroup>
 				<col width="95" />
 				<col width="120" />
 				<col width="95" />
 				<col width="*" />
-			</colgroup>
+			</colgroup>			
 			<tr class="rows_th">
-				<th><img src="http://img.emart.co.kr/front_2012/front/login/nomem_th_1.jpg" alt="이름" /></th>
+				<!-- [D] wah_start: label 추가 및 input에 for 속성값의 id 추가, input에 title삭제/ 이하 input 내용 상동 -->
+				<th scope="row"><label for="lb_name"><img src="http://img.emart.co.kr/front_2012/front/login/nomem_th_1.jpg" alt="이름" /></label></th>
 				<td class="inp">
-					<input type="text" name="member_name"  title="이름" class="txt" style="width: 96px;" />
+					<input type="text" name="member_name"  id="lb_name" class="txt" style="width: 96px;" />
 				</td>
-				<th><img src="http://img.emart.co.kr/front_2012/front/login/nomem_th_2.jpg" alt="휴대폰" /></th>
+				<th scope="row"><label for="lb_phone"><img src="http://img.emart.co.kr/front_2012/front/login/nomem_th_2.jpg" alt="휴대폰" /></label></th>
 				<td class="inp">
-					 <select name="hp1" title="휴대폰" style="width: 45px;">
+					 <select name="hp1" id="lb_phone" style="width: 45px;">
 						<option value="010">010</option>
 						<option value="011">011</option>
 						<option value="016">016</option>
@@ -877,40 +899,41 @@
 						<option value="018">018</option>
 						<option value="019">019</option>
 					 </select>
-					<input type="text" name="hp2" title="휴대폰" class="txt" style="width: 40px;" maxlength="4"/> -
-					<input type="text" name="hp3" title="휴대폰" class="txt" style="width: 40px;" maxlength="4"/>
+					<input type="text" name="hp2" id="lb_phone2" title="휴대폰 두번째 네자리 혹은 세자리" class="txt" style="width: 40px;" maxlength="4"/> -
+					<input type="text" name="hp3" id="lb_phone3" title="휴대폰 세번째 네자리" class="txt" style="width: 40px;" maxlength="4"/>
 				</td>
 			</tr>
 			<tr class="rows_th">
-				<th><img src="http://img.emart.co.kr/front_201109/images_new/login/hd_email.gif" alt="이메일" /></th>
+				<th scope="row"><label for="lb_email"><img src="http://img.emart.co.kr/front_201109/images_new/login/hd_email.gif" alt="이메일" /></label></th>
 				<td class="inp" colspan="3">
-					<input type="text" class="txt" name="email_addr" style="width: 96px;" /> @ <input class="txt" type="text" name="write2" id="write2" style="width: 255px;">
+					<input type="text" class="txt" name="email_addr" id="lb_email" style="width: 96px;" /> @ <input class="txt" type="text" name="write2" id="write2" title="이메일 공급회사" style="width:255px" />	<!-- [D] 끝에 /> 추가 -->
 				</td>
 			</tr>
 			</table>
 
 			<div class="pop_mem_tit">
 				<img src="http://img.emart.co.kr/front_2012/front/login/nomem_tit_2.jpg" alt="수령인정보" />
-				<label for="주문자와동일"><input type="checkbox" class="copyorder" name="copyorder" onclick="fnOrderCopy('NonMember');"/> 주문자와동일</label>
+				<label for="lb_order"><input type="checkbox" class="copyorder" name="copyorder" id="lb_order" onclick="fnOrderCopy('NonMember');"/> 주문자와동일</label>
 			</div>
 
 			<table cellpadding="0" cellspacing="0">
+			<caption class="e_bl">수령인 정보</caption> <!--[D] caption추가 -->
 			<colgroup>
 				<col width="95" />
 				<col width="170" />
 				<col width="60" />
 				<col width="*" />
-			</colgroup>
+			</colgroup>			
 			<tr class="rows_th">
-				<th><img src="http://img.emart.co.kr/front_2012/front/login/nomem_th_4.jpg" alt="이름" /></th>
+				<th scope="row"><label for="lb_ordername"><img src="http://img.emart.co.kr/front_2012/front/login/nomem_th_4.jpg" alt="이름" /></label></th>
 				<td class="inp" colspan="3">
-					<input type="text" name="toname"   class="txt" style="width: 96px;" />
+					<input type="text" name="toname" id="lb_ordername" class="txt" style="width: 96px;" />
 				</td>
 			</tr>
 			<tr class="rows_th">
-				<th><img src="http://img.emart.co.kr/front_2012/front/login/nomem_th_5.jpg" alt="연락처" /></th>
+				<th scope="row"><label for="lb_orderphone"><img src="http://img.emart.co.kr/front_2012/front/login/nomem_th_5.jpg" alt="연락처" /></label></th>
 				<td class="inp">
-					 <select name="tocontp1" title="국번" style="width: 45px;">
+					 <select name="tocontp1" title="국번" id="lb_orderphone" style="width: 45px;">
 						<option value="02">02</option>
 						<option value="031">031</option>
 						<option value="032">032</option>
@@ -932,12 +955,12 @@
 						<option value="0505">0505</option>
 						<option value="0506">0506</option>
 					 </select>
-					<input type="text" name="tocontp2" class="txt" style="width: 40px;" maxlength="4"/> -
-					<input type="text" name="tocontp3" class="txt" style="width: 40px;" maxlength="4"/>
+					<input type="text" name="tocontp2" class="txt" id="lb_orderphone2" title="전화번호 두번째 세자리" style="width: 40px;" maxlength="4"/> -
+					<input type="text" name="tocontp3" class="txt" style="width: 40px;" id="lb_orderphone3" title="전화번호 세번째 네자리" maxlength="4"/>
 				</td>
-				<th><img src="http://img.emart.co.kr/front_2012/front/login/nomem_th_6.jpg" alt="휴대폰" /></th>
+				<th scope="row"><label for="lb_ordercell"><img src="http://img.emart.co.kr/front_2012/front/login/nomem_th_6.jpg" alt="휴대폰" /></label></th>
 				<td class="inp">
-					 <select name="tohp1" title="휴대폰" style="width: 45px;">
+					 <select name="tohp1" id="lb_ordercell" title="휴대폰 앞번호 세자리" style="width: 45px;">
 						<option value="010">010</option>
 						<option value="011">011</option>
 						<option value="016">016</option>
@@ -945,20 +968,20 @@
 						<option value="018">018</option>
 						<option value="019">019</option>
 					 </select>
-					<input type="text" name="tohp2" title="휴대폰"  class="txt" style="width: 40px;" maxlength="4"/> -
-					<input type="text" name="tohp3" title="휴대폰"  class="txt" style="width: 40px;" maxlength="4" />
+					<input type="text" name="tohp2" id="lb_ordercell2" title="휴대폰 두번째 네자리 혹은 세자리" class="txt" style="width: 40px;" maxlength="4"/> -
+					<input type="text" name="tohp3" id="lb_ordercell3" title="휴대폰 세번째 네자리" class="txt" style="width: 40px;" maxlength="4" />
 				</td>
 			</tr>
 			<tr class="rows_th">
-				<th style="vertical-align:top; "><img src="http://img.emart.co.kr/front_2012/front/login/nomem_th_4.jpg" alt="받으실 분" /></th>
+				<th scope="row" style="vertical-align:top; "><label for="lb_add"><img src="http://img.emart.co.kr/front_2012/front/login/nomem_th_4.jpg" alt="받으실 분" /></label></th>
 				<td class="inp" colspan="3">
 					<div class="">
-						<input type="text" id="tozip1" class="txt" style="width: 40px;" title="우편번호" value="" name="tozip1" readonly /> -
-						<input type="text" id="tozip2" class="txt" style="width: 40px;" title="우편번호" value="" name="tozip2" readonly />
-						<a href="javascript:fnSrchAddr();"><img src="http://img.emart.co.kr/front_2012/front/login/btn_address.jpg" width="68" height="18" alt="우편번호찾기" /></a>
+						<input type="text" id="tozip1" class="txt" style="width: 40px;" title="우편번호 앞 세자리" value="" name="tozip1" readonly="readonly" /> -
+						<input type="text" id="tozip2" class="txt" style="width: 40px;" title="우편번호 뒤 세자리" value="" name="tozip2" readonly="readonly" />
+						<input type="image" src="http://img.emart.co.kr/front_2012/front/login/btn_address.jpg" id="lb_add" alt="우편번호찾기" onclick="javascript:fnSrchAddr();" class="inp_img" /> <!-- [D] a -> input, width="68" height="18" 삭제 -->
 					</div>
 					<p>
-						<input type="text" class="txt" name="toaddr1" id="toaddr1" style="width: 340px;" readonly />
+						<input type="text" class="txt" name="toaddr1" id="toaddr1" style="width: 340px;" readonly="readonly" />
 					</p>
 					<p>
 						<input type="text" class="txt" name="toaddr2" id="toaddr2" style="width: 340px;" onkeydown="fnEnterSubmit(event, 'NonMember')"/>
@@ -979,29 +1002,51 @@
 
 <script type="text/javascript">
 //<![CDATA[
-	var nomemContent = $('.nomemContent');
-	var nomemTab = $('.pop_tab img');
+
+	// [D] wah_start: 전체 교체하시고, 구코드 삭제해주세요
+	var elNomemContents = $('.nomemContent'),
+		elNomenTab = $('.pop_tab'),
+		elNomenTabImgs = $('.pop_tab img');
+
+	elNomenTab.delegate('li > a', 'click', function(e) {
+		var el = e.currentTarget,
+			idx = el.getAttribute('class') - 0,
+			fnChangeImg = function(el, isEnabled) {
+				el.src = (isEnabled) ?  el.src.replace('_off', '_on') : el.src.replace('_on', '_off');
+			};
+		if($(elNomemContents.get(idx)).is(':hidden')){
+			fnChangeImg(elNomenTabImgs[idx], true);
+			fnChangeImg(elNomenTabImgs[(idx === 0) ? 1 : 0], false);
+			elNomemContents.toggle();
+			(idx === 0)? window.resizeTo('597','580'): window.resizeTo('597','950');
+		}
+
+		e.stopPropagation();
+	});
+
+	/*
+	var nomemTab = $('.pop_tab a');
 	nomemTab.each(function(n){this.n=n}).click(function(){
 		nomemContent.hide().eq(this.n).show();
 		var num = this.n;
 		nomemTab.each(function(j){
 			if(num == j){
-					this.src = this.src.replace('_off','_on');
+					$(this).find("img").0.src = $(this).find("img").0.src.replace('_off','_on');
 					window.resizeTo('580','950');
 					nomemTabIndex = 1;
 			}else{
-					this.src = this.src.replace('_on','_off');
+					$(this).find("img").0.src = $(this).find("img").0.src.replace('_on','_off');
 					window.resizeTo('580','580');
 					nomemTabIndex = 0;
 			}
 		})
-
+		
 		window.focus();
 		if(nomemTabIndex == 1) document.nonmem_form.member_name.focus();
 		else document.nonmem_search_form.member_name.focus();
 
 		return false;
-	})
+	})*/
 //]]>
 </script>
 
@@ -1028,25 +1073,22 @@
 		</form>
 	</div>
 </div>
+
+<!-- [D] <style> 삭제 
 <style>
-<!--
 @font-face{
 	font-family:yoonDotum;
 	src:url('http://img.emart.co.kr/front_201109/font/UttumDotum_limitless.eot');	/* ie */
 	src:local('yoonDotum'), url('http://img.emart.co.kr/front_201109/static/css_new/yoonDotum.ttf') format('truetype');	/* ff_ttf */
 	/* src:local('NanumGothic_otf'), url('http://img.emart.co.kr/front_201109/static/css_new/yoonDotum.otf') format('truetype');	 ff_otf */
 }
--->
 </style>
+-->
 
-<form name="reloadForm" method="get" action="">
-
-<input type="hidden" name="emid" value=""/>
-
-<input type="hidden" name="method" value="loginPop"/>
-
-<input type="hidden" name="loginFlag" value=""/>
-
+<form name="reloadForm" method="get" action="">	<!-- [D] action="" 추가 -->
+	<input type="hidden" name="emid" value=""/>
+	<input type="hidden" name="method" value="loginPop"/>
+	<input type="hidden" name="loginFlag" value=""/>
 </form>
 
 </body>
