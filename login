@@ -119,10 +119,15 @@
 //]]>
 </script>
 
+<!-- [D] body 에 있는 inner css 모두 head로 이동 -->
 <style type="text/css">
-	@font-face {font-family:web-font;src:url(http://www.emart.com/static/font/UttumDotum_limitless.eot)};
-	body{font-family:web-font; font-size: 12px;}
-	div, p, span, a{font-family:web-font; font-size: 12px;}
+@font-face {font-family:web-font;src:url(http://www.emart.com/static/font/UttumDotum_limitless.eot)};
+body{font-family:web-font; font-size: 12px;}
+div, p, span, a{font-family:web-font; font-size: 12px;}
+.login_left{float:left}
+.loginbox dl dd.idsave label{width:auto}
+.loginbox .btnset{clear:both;width:286px;padding:10px 0 30px 92px;border-top: 4px solid #33353d} 
+.event_area{float:right;margin-top:-33px !important}
 </style>
 <link rel="stylesheet" type="text/css" href="http://c.img.emart.co.kr/static/css_new/login.css" />	<!-- [D] body에서 head로 이동 -->
 </head>
@@ -511,13 +516,6 @@
 <input type="hidden" name="save_id_flag" />
 </form>
 
-<style type="text/css">
-.login_left{float:left}
-.loginbox dl dd.idsave label{width:auto}
-.loginbox .btnset{clear:both;width:286px;padding:10px 0 30px 92px;border-top: 4px solid #33353d} 
-.event_area{float:right;margin-top:-33px !important}
-</style>
-
 <div id="pop_login" class="member" style="display:"> <!-- 팝업 사이즈 738 * 380 -->
 	<span class="close"><a href="javascript:self.close();"><img src="http://img.emart.co.kr/front_201109/images_new/login/icon_close.gif" alt="닫기" /></a></span>
 	<div class="loginbox">
@@ -573,8 +571,8 @@
 	</h1>	
 
 	<ul class="pop_tab">
-		<li><a href="#nomem_status" data-index="0"><img src="http://img.emart.co.kr/front_2012/front/login/nomember_tab_1_on.jpg"  alt="주문/배송조회" /></a></li>
-		<li><a href="#nomem_login" data-index="1"><img src="http://img.emart.co.kr/front_2012/front/login/nomember_tab_2_off.jpg"  alt="주문하기" /></a></li>
+		<li><a href="#nomem_status" class="0"><img src="http://img.emart.co.kr/front_2012/front/login/nomember_tab_1_on.jpg"  alt="주문/배송조회" /></a></li>
+		<li><a href="#nomem_login" class="1"><img src="http://img.emart.co.kr/front_2012/front/login/nomember_tab_2_off.jpg"  alt="주문하기" /></a></li>
 	</ul>
 
 	<!-- [s]비회원 주문배송조회 -->
@@ -1012,7 +1010,7 @@
 
 	elNomenTab.delegate('li > a', 'click', function(e) {
 		var el = e.currentTarget,
-			idx = el.getAttribute('data-index') - 0,
+			idx = el.getAttribute('class') - 0,
 			fnChangeImg = function(el, isEnabled) {
 				el.src = (isEnabled) ?  el.src.replace('_off', '_on') : el.src.replace('_on', '_off');
 			};
